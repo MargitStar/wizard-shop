@@ -43,7 +43,9 @@ function Header() {
 
   const handleCloseNavMenu = (route, page) => {
     setAnchorElNav(null);
-    handleClick(route, page);
+    if (route !== null || page !== null) {
+      handleClick(route, page);
+    }
   };
 
   return (
@@ -74,7 +76,7 @@ function Header() {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu(null, null)}
               sx={{
                 display: { xs: "block", md: "none" },
                 "& .MuiMenu-paper": { backgroundColor: "#ffcce1" },
