@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router";
 import Elixirs from "./components/Elixirs";
-import Wizards from "./components/Wizards";
+import Wizards from "./components/Wizards/Wizards";
 import Houses from "./components/Houses";
 import Spells from "./components/Spells";
 import Ingredients from "./components/Ingredients";
