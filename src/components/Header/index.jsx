@@ -5,8 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useNavigate, useLocation } from "react-router";
-import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import HeaderItem from "../HeaderItem";
 
 const pages = [
   { page: "Home", route: "/" },
@@ -30,7 +31,7 @@ function Header() {
   const [selectedButton, setSelectedButton] = React.useState(currentPage.page);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleClick = (route, page) => {
+  const handleItemClick = (route, page) => {
     if (currentRoute !== route) {
       navigate(route);
       setSelectedButton(page);
@@ -40,12 +41,8 @@ function Header() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
-  const handleCloseNavMenu = (route, page) => {
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    if (route !== null || page !== null) {
-      handleClick(route, page);
-    }
   };
 
   return (
@@ -76,49 +73,35 @@ function Header() {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={() => handleCloseNavMenu(null, null)}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
                 "& .MuiMenu-paper": { backgroundColor: "#ffcce1" },
               }}
             >
               {pages.map(({ route, page }) => (
-                <MenuItem
+                <HeaderItem
                   key={page}
-                  onClick={() => handleCloseNavMenu(route, page)}
-                  sx={{
-                    ":hover": {
-                      backgroundColor: "#fcebf2",
-                    },
-                    backgroundColor:
-                      selectedButton === page ? "#fff5d7" : undefined,
-                  }}
-                >
-                  <Typography sx={{ textAlign: "center", color: "#4b5945" }}>
-                    {page}
-                  </Typography>
-                </MenuItem>
+                  ButtonComponent={MenuItem}
+                  handleItemClick={handleItemClick}
+                  handleCloseNavigation={handleCloseNavMenu}
+                  selectedButton={selectedButton}
+                  route={route}
+                  page={page}
+                />
               ))}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map(({ route, page }) => (
-              <Button
+              <HeaderItem
                 key={page}
-                onClick={() => handleClick(route, page)}
-                sx={{
-                  my: 2,
-                  color: "#4b5945",
-                  display: "block",
-                  ":hover": {
-                    backgroundColor: "#fcebf2",
-                  },
-                  backgroundColor:
-                    selectedButton === page ? "#fff5d7" : undefined,
-                }}
-              >
-                {page}
-              </Button>
+                ButtonComponent={Button}
+                handleItemClick={handleItemClick}
+                selectedButton={selectedButton}
+                route={route}
+                page={page}
+              />
             ))}
           </Box>
         </Toolbar>
