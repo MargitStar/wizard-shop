@@ -33,6 +33,7 @@ module.exports = {
   ],
   devServer: {
     static: "./dist",
+    historyApiFallback: true,
     port: 3000, // Development server port
     open: true, // Open browser automatically
   },
