@@ -13,7 +13,7 @@ export default function HeaderItem({
     <ButtonComponent
       onClick={() => {
         handleItemClick(route, page);
-        if (handleCloseNavigation !== undefined) {
+        if (handleCloseNavigation) {
           handleCloseNavigation();
         }
       }}
