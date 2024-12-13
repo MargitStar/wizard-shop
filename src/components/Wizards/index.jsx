@@ -3,22 +3,22 @@ import { WIZARD_WORLD_BASE_URL } from "../../constants";
 import DataFetcherWithPagination from "../DataFetcher";
 import { Typography } from "@mui/material";
 
-const IngredientsContent = ({ data }) => {
+const WizardsContent = ({ data }) => {
   return (
     <>
       <Typography variant="h5" component="div">
-        {data.name}
+        {data.firstName} {data.lastName}
       </Typography>
     </>
   );
 };
 
-export default function Ingredients() {
+export default function Wizards() {
   return (
     <DataFetcherWithPagination
-      url={`${WIZARD_WORLD_BASE_URL}/Ingredients`}
-      name="Ingredients"
-      Content={IngredientsContent}
+      url={`${WIZARD_WORLD_BASE_URL}/Wizards`}
+      name="Wizards"
+      Content={WizardsContent}
     />
   );
 }

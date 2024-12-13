@@ -8,25 +8,18 @@ import { useNavigate, useLocation } from "react-router";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HeaderItem from "../HeaderItem";
-
-const pages = [
-  { page: "Home", route: "/" },
-  { page: "Elixirs", route: "/elixirs" },
-  { page: "Houses", route: "/houses" },
-  { page: "Ingredients", route: "/ingredients" },
-  { page: "Spells", route: "/spells" },
-  { page: "Wizards", route: "/wizards" },
-];
+import { PAGES } from "../../constants.js";
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentRoute = location.pathname;
+
   const currentPage =
     useMemo(
-      () => pages.filter((item) => item.route === currentRoute)[0],
+      () => PAGES.filter((item) => item.route === currentRoute)[0],
       [currentRoute]
-    ) || pages[0];
+    ) || PAGES[0];
 
   const [selectedButton, setSelectedButton] = React.useState(currentPage.page);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -79,7 +72,7 @@ function Header() {
                 "& .MuiMenu-paper": { backgroundColor: "#ffcce1" },
               }}
             >
-              {pages.map(({ route, page }) => (
+              {PAGES.map(({ route, page }) => (
                 <HeaderItem
                   key={page}
                   ButtonComponent={MenuItem}
@@ -93,7 +86,7 @@ function Header() {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map(({ route, page }) => (
+            {PAGES.map(({ route, page }) => (
               <HeaderItem
                 key={page}
                 ButtonComponent={Button}
