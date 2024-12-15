@@ -1,7 +1,6 @@
 body {
   background: linear-gradient(to bottom right, #fff5d7, #ffcce1);
   background-size: 100% 100%;
-  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
