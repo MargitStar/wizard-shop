@@ -1,6 +1,11 @@
 import React from "react";
 import { Box, Pagination } from "@mui/material";
-import { FetcherTypography, StyledLinearProgress } from "./style";
+import {
+  FetcherTypography,
+  StyledLinearProgress,
+  PaginationBox,
+  MagicCardBox,
+} from "./style";
 import MagicCard from "../MagicCard";
 import useFetch from "../../utils/fetcher";
 import usePagination from "../../utils/paginator";
@@ -28,31 +33,13 @@ export default function DataDisplayer({ url, name, Content }) {
       <Box>
         <FetcherTypography>{name}</FetcherTypography>
       </Box>
-      <Box
-        sx={{
-          marginTop: 4,
-          width: "80%",
-          marginRight: "auto",
-          marginLeft: "auto",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 2,
-          justifyContent: "center",
-        }}
-      >
+      <MagicCardBox>
         {paginatedData.map((row) => (
           <MagicCard key={row.id} data={row} Content={Content} />
         ))}
-      </Box>
-      {totalPages > 1 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: 2,
-            marginBottom: 2,
-          }}
-        >
+      </MagicCardBox>
+      <PaginationBox>
+        {totalPages > 1 && (
           <Pagination
             count={totalPages}
             page={currentPage}
@@ -61,8 +48,8 @@ export default function DataDisplayer({ url, name, Content }) {
             }}
             color="secondary"
           />
-        </Box>
-      )}
+        )}
+      </PaginationBox>
     </>
   );
 }
