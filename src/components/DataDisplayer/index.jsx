@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Pagination } from "@mui/material";
 import { FetcherTypography, StyledLinearProgress } from "./style";
 import MagicCard from "../MagicCard";
+import useFetch from "../../utils/fetcher";
+import usePagination from "../../utils/paginator";
 
-export default function DataFetcherWithPagination({ url, name, Content }) {
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState([]);
-  const itemsPerPage = 10;
-
-  const totalDataLength = data.length;
-  const totalPages = Math.ceil(totalDataLength / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = data.slice(startIndex, startIndex + itemsPerPage);
-
-  const handleFetchData = async () => {
-    const response = await fetch(url);
-    const responseData = await response.json();
-    setData(responseData);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    handleFetchData();
-  }, []);
-
-  const handlePageChange = (event, value) => {
-    setCurrentPage(value);
-  };
+export default function DataDisplayer({ url, name, Content }) {
+  const { data, loading } = useFetch(url);
+  const { totalPages, paginatedData, currentPage, handlePageChange } =
+    usePagination(data);
 
   if (loading) {
     return (
@@ -50,6 +31,9 @@ export default function DataFetcherWithPagination({ url, name, Content }) {
       <Box
         sx={{
           marginTop: 4,
+          width: "80%",
+          marginRight: "auto",
+          marginLeft: "auto",
           display: "flex",
           flexWrap: "wrap",
           gap: 2,
@@ -72,7 +56,9 @@ export default function DataFetcherWithPagination({ url, name, Content }) {
           <Pagination
             count={totalPages}
             page={currentPage}
-            onChange={handlePageChange}
+            onChange={(event, value) => {
+              handlePageChange(value);
+            }}
             color="secondary"
           />
         </Box>

@@ -1,6 +1,6 @@
 import React from "react";
 import { WIZARD_WORLD_BASE_URL } from "../../constants";
-import DataFetcherWithPagination from "../DataFetcher";
+import DataDisplayer from "../DataDisplayer";
 import { Typography } from "@mui/material";
 
 const IngredientsContent = ({ data }) => {
@@ -15,7 +15,7 @@ const IngredientsContent = ({ data }) => {
 
 export default function Ingredients() {
   return (
-    <DataFetcherWithPagination
+    <DataDisplayer
       url={`${WIZARD_WORLD_BASE_URL}/Ingredients`}
       name="Ingredients"
       Content={IngredientsContent}

@@ -1,5 +1,5 @@
 import React from "react";
-import DataFetcherWithPagination from "../DataFetcher";
+import DataDisplayer from "../DataDisplayer";
 import { WIZARD_WORLD_BASE_URL } from "../../constants";
 import { Typography } from "@mui/material";
 
@@ -24,7 +24,7 @@ const HousesContent = ({ data }) => {
 
 export default function Houses() {
   return (
-    <DataFetcherWithPagination
+    <DataDisplayer
       url={`${WIZARD_WORLD_BASE_URL}/Houses`}
       name="Houses"
       Content={HousesContent}

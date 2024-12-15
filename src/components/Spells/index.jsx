@@ -1,6 +1,6 @@
 import React from "react";
 import { WIZARD_WORLD_BASE_URL } from "../../constants";
-import DataFetcherWithPagination from "../DataFetcher";
+import DataDisplayer from "../DataDisplayer";
 import { Typography } from "@mui/material";
 
 const SpellsContent = ({ data }) => {
@@ -24,7 +24,7 @@ const SpellsContent = ({ data }) => {
 
 export default function Spells() {
   return (
-    <DataFetcherWithPagination
+    <DataDisplayer
       url={`${WIZARD_WORLD_BASE_URL}/Spells`}
       name="Spells"
       Content={SpellsContent}
