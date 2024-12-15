@@ -11,9 +11,14 @@ import useFetch from "../../utils/fetcher";
 import usePagination from "../../utils/paginator";
 
 export default function DataDisplayer({ url, name, Content }) {
-  const { data, loading } = useFetch(url);
+  const { data, error, loading } = useFetch(url);
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data);
+
+  // Just Logging Error For Now, not Displaying any error mesage
+  if (error) {
+    console.log(error);
+  }
 
   if (loading) {
     return (
