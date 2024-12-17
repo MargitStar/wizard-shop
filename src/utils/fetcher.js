@@ -1,29 +1,44 @@
-import { useState, useEffect } from "react";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-function useFetch(url) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-
-  const handleFetchData = async () => {
+export const fetchData = createAsyncThunk(
+  "fetch/data",
+  async (url, { rejectWithValue }) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Not Ok");
       }
-      const responseData = await response.json();
-      setData(responseData);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
+      return rejectWithValue(error.message);
     }
-  };
+  }
+);
 
-  useEffect(() => {
-    handleFetchData();
-  }, [url]);
-  return { data, error, loading };
-}
+const fetchSlice = createSlice({
+  name: "fetch",
+  initialState: {
+    loading: false,
+    data: [],
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
+});
 
-export default useFetch;
+export default fetchSlice.reducer;
