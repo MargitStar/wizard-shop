@@ -18,7 +18,9 @@ export default function DataDisplayer({ url, name, Content }) {
     usePagination(data);
 
   useEffect(() => {
-    dispatch(fetchData(url));
+    if (url) {
+      dispatch(fetchData(url));
+    }
   }, [url, dispatch]);
 
   // Just Logging Error For Now, not Displaying any error mesage
