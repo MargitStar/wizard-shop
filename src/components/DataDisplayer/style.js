@@ -4,9 +4,8 @@ import styled from "@emotion/styled";
 export const FetcherTypography = styled(Typography)`
   text-align: center;
   font-family: Arial, sans-serif;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  font-size: 32px;
+  margin: 32px;
   color: #4b5945;
 `;
 
@@ -21,8 +20,7 @@ export const StyledLinearProgress = styled(LinearProgress)`
 export const PaginationBox = styled(Box)`
   display: flex;
   justify-content: center;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px;
 `;
 
 export const MagicCardBox = styled(Box)`

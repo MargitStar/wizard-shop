@@ -1,29 +1,17 @@
-import { useState, useEffect } from "react";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-function useFetch(url) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-
-  const handleFetchData = async () => {
+export const fetchData = createAsyncThunk(
+  "fetch/data",
+  async (url, { rejectWithValue }) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Not Ok");
       }
-      const responseData = await response.json();
-      setData(responseData);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
+      return rejectWithValue(error.message);
     }
-  };
-
-  useEffect(() => {
-    handleFetchData();
-  }, [url]);
-  return { data, error, loading };
-}
-
-export default useFetch;
+  }
+);

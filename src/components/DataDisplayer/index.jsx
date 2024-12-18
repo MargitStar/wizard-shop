@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Pagination } from "@mui/material";
 import {
   FetcherTypography,
@@ -7,13 +7,21 @@ import {
   MagicCardBox,
 } from "./style";
 import MagicCard from "../MagicCard";
-import useFetch from "../../utils/fetcher";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../../utils/fetcher";
 import usePagination from "../../utils/paginator";
 
 export default function DataDisplayer({ url, name, Content }) {
-  const { data, error, loading } = useFetch(url);
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.fetch);
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data);
+
+  useEffect(() => {
+    if (url) {
+      dispatch(fetchData(url));
+    }
+  }, [url, dispatch]);
 
   // Just Logging Error For Now, not Displaying any error mesage
   if (error) {
