@@ -2,6 +2,7 @@ import React from "react";
 import { WIZARD_WORLD_BASE_URL } from "../../constants";
 import DataDisplayer from "../DataDisplayer";
 import { Typography } from "@mui/material";
+import { useGetSpellsQuery } from "../../utils/api";
 
 const SpellsContent = ({ data }) => {
   return (
@@ -28,6 +29,7 @@ export default function Spells() {
       url={`${WIZARD_WORLD_BASE_URL}/Spells`}
       name="Spells"
       Content={SpellsContent}
+      fetcher={useGetSpellsQuery}
     />
   );
 }

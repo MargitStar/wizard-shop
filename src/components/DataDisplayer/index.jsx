@@ -8,27 +8,29 @@ import {
 } from "./style";
 import MagicCard from "../MagicCard";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../../utils/fetcher";
 import usePagination from "../../utils/paginator";
+import { useGetElixirsQuery } from "../../utils/api";
 
-export default function DataDisplayer({ url, name, Content }) {
-  const dispatch = useDispatch();
-  const { data, loading, error } = useSelector((state) => state.fetch);
+export default function DataDisplayer({ url, name, Content, fetcher }) {
+  // const dispatch = useDispatch();
+  // console.log(fetcher);
+  const { data, isLoading, error } = fetcher();
+  // console.log(fetcher());
   const { totalPages, paginatedData, currentPage, handlePageChange } =
-    usePagination(data);
+    usePagination(data ?? []);
 
-  useEffect(() => {
-    if (url) {
-      dispatch(fetchData(url));
-    }
-  }, [url, dispatch]);
+  // useEffect(() => {
+  //   if (url) {
+  //     dispatch(fetchData(url));
+  //   }
+  // }, [url, dispatch]);
 
   // Just Logging Error For Now, not Displaying any error mesage
   if (error) {
     console.log(error);
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <>
         <Box>
