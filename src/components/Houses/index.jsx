@@ -1,6 +1,5 @@
 import React from "react";
 import DataDisplayer from "../DataDisplayer";
-import { WIZARD_WORLD_BASE_URL } from "../../constants";
 import { Typography } from "@mui/material";
 import { useGetHousesQuery } from "../../utils/api";
 
@@ -24,12 +23,8 @@ const HousesContent = ({ data }) => {
 };
 
 export default function Houses() {
+  const response = useGetHousesQuery();
   return (
-    <DataDisplayer
-      url={`${WIZARD_WORLD_BASE_URL}/Houses`}
-      name="Houses"
-      Content={HousesContent}
-      fetcher={useGetHousesQuery}
-    />
+    <DataDisplayer name="Houses" Content={HousesContent} response={response} />
   );
 }

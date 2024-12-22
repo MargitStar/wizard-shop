@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { WIZARD_WORLD_BASE_URL } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
 import DataDisplayer from "../DataDisplayer";
+import { fetchEndpointData } from "../../utils/fetcher";
 import { Typography } from "@mui/material";
-import { useGetSpellsQuery } from "../../utils/api";
 
 const SpellsContent = ({ data }) => {
   return (
@@ -24,12 +25,12 @@ const SpellsContent = ({ data }) => {
 };
 
 export default function Spells() {
+  const dispatch = useDispatch();
+  const response = useSelector((state) => state.spellWizards?.spells);
+  useEffect(() => {
+    dispatch(fetchEndpointData("spells", `${WIZARD_WORLD_BASE_URL}/Spells`));
+  }, [dispatch]);
   return (
-    <DataDisplayer
-      url={`${WIZARD_WORLD_BASE_URL}/Spells`}
-      name="Spells"
-      Content={SpellsContent}
-      fetcher={useGetSpellsQuery}
-    />
+    <DataDisplayer name="Spells" Content={SpellsContent} response={response} />
   );
 }
