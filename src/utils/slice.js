@@ -7,11 +7,13 @@ const fetchSlice = createSlice({
       isLoading: false,
       data: null,
       error: null,
+      lastlyCached: null,
     },
     spells: {
       isLoading: false,
       data: null,
       error: null,
+      lastlyCached: null,
     },
   },
   reducers: {
@@ -23,6 +25,7 @@ const fetchSlice = createSlice({
       const { endpoint_name, data } = action.payload;
       state[endpoint_name].data = data;
       state[endpoint_name].isLoading = false;
+      state[endpoint_name].lastlyCached = Date.now();
     },
     setError: (state, action) => {
       const { error, endpoint_name } = action.payload;
