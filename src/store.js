@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import fetchReducer from "../src/utils/slice";
+import { api } from "./utils/api";
+import spellWizardReducer from "./utils/slice";
 
 export const store = configureStore({
   reducer: {
-    fetch: fetchReducer,
+    spellWizards: spellWizardReducer,
+    [api.reducerPath]: api.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });

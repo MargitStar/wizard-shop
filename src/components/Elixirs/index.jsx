@@ -1,7 +1,7 @@
 import React from "react";
-import { WIZARD_WORLD_BASE_URL } from "../../constants";
 import DataDisplayer from "../DataDisplayer";
 import { Typography } from "@mui/material";
+import { useGetElixirsQuery } from "../../utils/api";
 
 const ElixirsContent = ({ data }) => {
   return (
@@ -20,11 +20,12 @@ const ElixirsContent = ({ data }) => {
 };
 
 export default function Elixirs() {
+  const response = useGetElixirsQuery();
   return (
     <DataDisplayer
-      url={`${WIZARD_WORLD_BASE_URL}/Elixirs`}
       name="Elixirs"
       Content={ElixirsContent}
+      response={response}
     />
   );
 }

@@ -1,29 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchData } from "./fetcher";
 
 const fetchSlice = createSlice({
-  name: "fetch",
+  name: "spellWizards",
   initialState: {
-    loading: false,
-    data: [],
-    error: null,
+    wizards: {
+      isLoading: false,
+      data: null,
+      error: null,
+      lastlyCached: null,
+    },
+    spells: {
+      isLoading: false,
+      data: null,
+      error: null,
+      lastlyCached: null,
+    },
   },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchData.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
-      })
-      .addCase(fetchData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+  reducers: {
+    setLoading: (state, action) => {
+      const { endpoint_name } = action.payload;
+      state[endpoint_name].isLoading = true;
+    },
+    setData: (state, action) => {
+      const { endpoint_name, data } = action.payload;
+      state[endpoint_name].data = data;
+      state[endpoint_name].isLoading = false;
+      state[endpoint_name].lastlyCached = Date.now();
+    },
+    setError: (state, action) => {
+      const { error, endpoint_name } = action.payload;
+      state[endpoint_name].error = error;
+      state[endpoint_name].isLoading = false;
+    },
   },
 });
+
+export const { setLoading, setData, setError } = fetchSlice.actions;
 
 export default fetchSlice.reducer;
