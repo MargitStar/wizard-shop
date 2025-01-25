@@ -15,4 +15,13 @@ export const StyledMagicCard = styled(Card)`
   border-radius: 16px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fcebf2;
+  }
 `;

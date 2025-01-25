@@ -1,11 +1,20 @@
 import React from "react";
 import DataDisplayer from "../DataDisplayer";
-import { Typography } from "@mui/material";
-import { useGetElixirsQuery } from "../../utils/api";
+import { Typography, Box } from "@mui/material";
+import { useGetElixirsQuery, useGetElixirQuery } from "../../utils/api";
 
 const ElixirsContent = ({ data }) => {
   return (
-    <>
+    <Typography variant="h5" component="div">
+      {data.name}
+    </Typography>
+  );
+};
+
+const ElixirModalContent = ({ data }) => {
+  console.log(data);
+  return (
+    <Box>
       <Typography variant="h5" component="div">
         {data.name}
       </Typography>
@@ -13,9 +22,15 @@ const ElixirsContent = ({ data }) => {
         Effect: {data.effect ? data.effect : "DEATHLY"}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
+        Side Effects: {data.sideEffects}
+      </Typography>
+      <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
+        Characteristics: {data.characteristics}
+      </Typography>
+      <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
         Difficulty: {data.difficulty}
       </Typography>
-    </>
+    </Box>
   );
 };
 
@@ -26,6 +41,8 @@ export default function Elixirs() {
       name="Elixirs"
       Content={ElixirsContent}
       response={response}
+      useModalDataQuery={useGetElixirQuery}
+      ModalContent={ElixirModalContent}
     />
   );
 }

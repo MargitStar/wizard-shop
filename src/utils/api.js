@@ -10,14 +10,37 @@ export const api = createApi({
     getElixirs: builder.query({
       query: () => "Elixirs",
     }),
+    getElixir: builder.query({
+      query: (id) => `Elixirs/${id}`,
+    }),
     getIngredients: builder.query({
       query: () => "Ingredients",
+    }),
+    getIngredient: builder.query({
+      query: (id) => `Ingredients/${id}`,
     }),
     getHouses: builder.query({
       query: () => "Houses",
     }),
+    getHouse: builder.query({
+      query: (id) => `Houses/${id}`,
+    }),
+    getWizard: builder.query({
+      query: (id) => `Wizards/${id}`,
+    }),
+    getSpell: builder.query({
+      query: (id) => `Spells/${id}`,
+    }),
   }),
 });
 
-export const { useGetElixirsQuery, useGetHousesQuery, useGetIngredientsQuery } =
-  api;
+export const {
+  useGetElixirsQuery,
+  useGetHousesQuery,
+  useGetIngredientsQuery,
+  useGetElixirQuery,
+  useGetHouseQuery,
+  useGetIngredientQuery,
+  useGetWizardQuery,
+  useGetSpellQuery,
+} = api;

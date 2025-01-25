@@ -9,7 +9,13 @@ import {
 import MagicCard from "../MagicCard";
 import usePagination from "../../utils/paginator";
 
-export default function DataDisplayer({ name, Content, response }) {
+export default function DataDisplayer({
+  name,
+  Content,
+  response,
+  useModalDataQuery,
+  ModalContent,
+}) {
   const { data, isLoading, error } = response;
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data ?? []);
@@ -39,7 +45,13 @@ export default function DataDisplayer({ name, Content, response }) {
       </Box>
       <MagicCardBox>
         {paginatedData.map((row) => (
-          <MagicCard key={row.id} data={row} Content={Content} />
+          <MagicCard
+            key={row.id}
+            data={row}
+            Content={Content}
+            useModalDataQuery={useModalDataQuery}
+            ModalContent={ModalContent}
+          />
         ))}
       </MagicCardBox>
       <PaginationBox>
