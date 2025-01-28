@@ -9,7 +9,7 @@ import { useGetWizardQuery } from "../../utils/api";
 const WizardsContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
-      {data.firstName} {data.lastName}
+      {data?.firstName} {data?.lastName}
     </Typography>
   );
 };
@@ -18,7 +18,7 @@ const WizardModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
-        {data.firstName} {data.lastName}
+        {data?.firstName} {data?.lastName}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
         Created Elixirs: {data?.elixirs.map((elixir) => elixir.name).join(", ")}

@@ -34,7 +34,7 @@ export default function MagicCard({
           id={selectedCardId}
           useModalDataQuery={useModalDataQuery}
           ModalContent={ModalContent}
-        ></WizardModal>
+        />
       )}
     </>
   );

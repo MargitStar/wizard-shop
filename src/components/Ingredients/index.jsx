@@ -6,7 +6,7 @@ import { useGetIngredientsQuery, useGetIngredientQuery } from "../../utils/api";
 const IngredientsContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
-      {data.name}
+      {data?.name}
     </Typography>
   );
 };
@@ -15,7 +15,7 @@ const IngredientModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
-        {data.name}
+        {data?.name}
       </Typography>
     </Box>
   );

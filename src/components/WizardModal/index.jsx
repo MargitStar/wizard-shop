@@ -22,27 +22,21 @@ export default function WizardModal({
     );
   }
 
-  if (isLoading) {
-    return (
-      <Modal open={open} onClose={handleClose}>
-        <MagicModalBox>
-          <MagicModalBoxButton onClick={handleClose}>
-            <CloseIcon />
-          </MagicModalBoxButton>
-          <CircularProgress />
-          <Typography sx={{ mt: 2 }}>Loading...</Typography>
-        </MagicModalBox>
-      </Modal>
-    );
-  }
-
   return (
     <Modal open={open} onClose={handleClose}>
       <MagicModalBox>
         <MagicModalBoxButton onClick={handleClose}>
           <CloseIcon />
         </MagicModalBoxButton>
-        <ModalContent data={data} />
+        {isLoading ? (
+          <>
+            <CircularProgress />
+            <Typography sx={{ mt: 2 }}>Loading...</Typography>
+          </>
+        ) : (
+          <ModalContent data={data} />
+        )}
+        {}
       </MagicModalBox>
     </Modal>
   );

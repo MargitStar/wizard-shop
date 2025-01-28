@@ -6,7 +6,7 @@ import { useGetHousesQuery, useGetHouseQuery } from "../../utils/api";
 const HousesContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
-      {data.name}
+      {data?.name}
     </Typography>
   );
 };
@@ -15,16 +15,16 @@ const HouseModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
-        {data.name}
+        {data?.name}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Colors: {data.houseColours}
+        Colors: {data?.houseColours}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Founder: {data.founder}
+        Founder: {data?.founder}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Animal: {data.animal}
+        Animal: {data?.animal}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
         Heads:{" "}

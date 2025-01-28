@@ -6,7 +6,7 @@ import { useGetElixirsQuery, useGetElixirQuery } from "../../utils/api";
 const ElixirsContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
-      {data.name}
+      {data?.name}
     </Typography>
   );
 };
@@ -16,19 +16,19 @@ const ElixirModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
-        {data.name}
+        {data?.name}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Effect: {data.effect ? data.effect : "DEATHLY"}
+        Effect: {data?.effect ? data.effect : "DEATHLY"}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Side Effects: {data.sideEffects}
+        Side Effects: {data?.sideEffects}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Characteristics: {data.characteristics}
+        Characteristics: {data?.characteristics}
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Difficulty: {data.difficulty}
+        Difficulty: {data?.difficulty}
       </Typography>
     </Box>
   );
