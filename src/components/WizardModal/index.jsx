@@ -36,7 +36,6 @@ export default function WizardModal({
         ) : (
           <ModalContent data={data} />
         )}
-        {}
       </MagicModalBox>
     </Modal>
   );
