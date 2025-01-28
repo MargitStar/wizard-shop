@@ -12,7 +12,6 @@ const ElixirsContent = ({ data }) => {
 };
 
 const ElixirModalContent = ({ data }) => {
-  console.log(data);
   return (
     <Box>
       <Typography variant="h5" component="div">
