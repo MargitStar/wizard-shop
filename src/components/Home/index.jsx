@@ -5,14 +5,14 @@ import { IngredientsHomeScroll } from "../Ingredients";
 import { SpellsHomeScroll } from "../Spells";
 import { WizardsHomeScroll } from "../Wizards";
 
-export default function Home() {
+export default function Home({ handleItemClick }) {
   return (
     <>
-      <ElixirsHomeScroll />
-      <IngredientsHomeScroll />
-      <HousesHomeScroll />
-      <SpellsHomeScroll />
-      <WizardsHomeScroll />
+      <ElixirsHomeScroll handleItemClick={handleItemClick} />
+      <IngredientsHomeScroll handleItemClick={handleItemClick} />
+      <HousesHomeScroll handleItemClick={handleItemClick} />
+      <SpellsHomeScroll handleItemClick={handleItemClick} />
+      <WizardsHomeScroll handleItemClick={handleItemClick} />
     </>
   );
 }

@@ -4,32 +4,13 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import { useNavigate, useLocation } from "react-router";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HeaderItem from "../HeaderItem";
 import { PAGES } from "../../constants.js";
 
-const useCurrentRoute = () => {
-  const location = useLocation();
-  return location.pathname;
-};
-
-function Header() {
-  const navigate = useNavigate();
-  const currentRoute = useCurrentRoute();
-
-  const currentPage = PAGES.filter((item) => item.route === currentRoute)[0];
-
-  const [selectedButton, setSelectedButton] = useState(currentPage.page);
+function Header({ handleItemClick, selectedButton }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
-
-  const handleItemClick = (route, page) => {
-    if (currentRoute !== route) {
-      navigate(route);
-      setSelectedButton(page);
-    }
-  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

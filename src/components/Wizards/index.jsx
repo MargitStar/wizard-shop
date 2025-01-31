@@ -39,12 +39,13 @@ const fetchWizards = () => {
   return response;
 };
 
-export function WizardsHomeScroll() {
+export function WizardsHomeScroll({ handleItemClick }) {
   return (
     <HomeScroll
       name="Wizards"
       Content={WizardsContent}
       response={fetchWizards()}
+      handleItemClick={handleItemClick}
     />
   );
 }

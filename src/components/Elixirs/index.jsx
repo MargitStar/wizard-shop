@@ -34,10 +34,15 @@ const ElixirModalContent = ({ data }) => {
   );
 };
 
-export function ElixirsHomeScroll() {
+export function ElixirsHomeScroll({ handleItemClick }) {
   const response = useGetElixirsQuery();
   return (
-    <HomeScroll name="Elixirs" Content={ElixirsContent} response={response} />
+    <HomeScroll
+      name="Elixirs"
+      Content={ElixirsContent}
+      response={response}
+      handleItemClick={handleItemClick}
+    />
   );
 }
 

@@ -7,13 +7,23 @@ import { FetcherTypography } from "../DataDisplayer/style";
 import { PAGES } from "../../constants";
 import { Link } from "react-router";
 
-export default function HomeScroll({ name, Content, response }) {
+export default function HomeScroll({
+  name,
+  Content,
+  response,
+  handleItemClick,
+}) {
   const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
+  const page = PAGES.filter((item) => item.page === name)[0];
   return (
     <Box>
       <FetcherTypography>
-        <Link to={PAGES.filter((item) => item.page === name)[0]?.route}>
+        <Link
+          id="."
+          to={page?.route}
+          onClick={() => handleItemClick(page?.route, page?.page)}
+        >
           {name}
         </Link>
       </FetcherTypography>
