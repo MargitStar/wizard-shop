@@ -2,6 +2,7 @@ import React from "react";
 import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetIngredientsQuery, useGetIngredientQuery } from "../../utils/api";
+import HomeScroll from "../HomeScroll";
 
 const IngredientsContent = ({ data }) => {
   return (
@@ -20,6 +21,17 @@ const IngredientModalContent = ({ data }) => {
     </Box>
   );
 };
+
+export function IngredientsHomeScroll() {
+  const response = useGetIngredientsQuery();
+  return (
+    <HomeScroll
+      name="Ingredients"
+      Content={IngredientsContent}
+      response={response}
+    />
+  );
+}
 
 export default function Ingredients() {
   const response = useGetIngredientsQuery();

@@ -5,6 +5,7 @@ import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { fetchEndpointData } from "../../utils/fetcher";
 import { useGetWizardQuery } from "../../utils/api";
+import HomeScroll from "../HomeScroll";
 
 const WizardsContent = ({ data }) => {
   return (
@@ -28,17 +29,32 @@ const WizardModalContent = ({ data }) => {
   );
 };
 
-export default function Wizards() {
+const fetchWizards = () => {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.spellWizards?.wizards);
   useEffect(() => {
     dispatch(fetchEndpointData("wizards", `${WIZARD_WORLD_BASE_URL}/Wizards`));
   }, [dispatch]);
+
+  return response;
+};
+
+export function WizardsHomeScroll() {
+  return (
+    <HomeScroll
+      name="Wizards"
+      Content={WizardsContent}
+      response={fetchWizards()}
+    />
+  );
+}
+
+export default function Wizards() {
   return (
     <DataDisplayer
       name="Wizards"
       Content={WizardsContent}
-      response={response}
+      response={fetchWizards()}
       useModalDataQuery={useGetWizardQuery}
       ModalContent={WizardModalContent}
     />

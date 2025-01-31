@@ -2,6 +2,7 @@ import React from "react";
 import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetElixirsQuery, useGetElixirQuery } from "../../utils/api";
+import HomeScroll from "../HomeScroll";
 
 const ElixirsContent = ({ data }) => {
   return (
@@ -32,6 +33,13 @@ const ElixirModalContent = ({ data }) => {
     </Box>
   );
 };
+
+export function ElixirsHomeScroll() {
+  const response = useGetElixirsQuery();
+  return (
+    <HomeScroll name="Elixirs" Content={ElixirsContent} response={response} />
+  );
+}
 
 export default function Elixirs() {
   const response = useGetElixirsQuery();

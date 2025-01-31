@@ -2,8 +2,9 @@ import React from "react";
 import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetHousesQuery, useGetHouseQuery } from "../../utils/api";
+import HomeScroll from "../HomeScroll";
 
-const HousesContent = ({ data }) => {
+export const HousesContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
       {data?.name}
@@ -35,6 +36,13 @@ const HouseModalContent = ({ data }) => {
     </Box>
   );
 };
+
+export function HousesHomeScroll() {
+  const response = useGetHousesQuery();
+  return (
+    <HomeScroll name="Houses" Content={HousesContent} response={response} />
+  );
+}
 
 export default function Houses() {
   const response = useGetHousesQuery();

@@ -5,8 +5,9 @@ import DataDisplayer from "../DataDisplayer";
 import { fetchEndpointData } from "../../utils/fetcher";
 import { Typography, Box } from "@mui/material";
 import { useGetSpellQuery } from "../../utils/api";
+import HomeScroll from "../HomeScroll";
 
-const SpellsContent = ({ data }) => {
+export const SpellsContent = ({ data }) => {
   return (
     <Typography variant="h5" component="div">
       {data?.name}
@@ -42,17 +43,32 @@ const ModalSpellContent = ({ data }) => {
   );
 };
 
-export default function Spells() {
+const fetchSpells = () => {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.spellWizards?.spells);
   useEffect(() => {
     dispatch(fetchEndpointData("spells", `${WIZARD_WORLD_BASE_URL}/Spells`));
   }, [dispatch]);
+
+  return response;
+};
+
+export function SpellsHomeScroll() {
+  return (
+    <HomeScroll
+      name="Spells"
+      Content={SpellsContent}
+      response={fetchSpells()}
+    />
+  );
+}
+
+export default function Spells() {
   return (
     <DataDisplayer
       name="Spells"
       Content={SpellsContent}
-      response={response}
+      response={fetchSpells()}
       useModalDataQuery={useGetSpellQuery}
       ModalContent={ModalSpellContent}
     />
