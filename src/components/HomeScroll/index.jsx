@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import MagicCard from "../MagicCard";
 import { MagicCardBox } from "../DataDisplayer/style";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import usePagination from "../../utils/paginator";
 import { FetcherTypography } from "../DataDisplayer/style";
 import { PAGES } from "../../constants";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { HomeScrollBox } from "./style";
 
 export default function HomeScroll({
@@ -14,9 +14,21 @@ export default function HomeScroll({
   response,
   handleItemClick,
 }) {
+  const navigate = useNavigate();
+  const page = PAGES.filter((item) => item.page === name)[0];
+  const params = new URLSearchParams(document.location.search);
+  const modalId = params.get("modal");
+
+  const [selectedCardId, setSelectedCardId] = useState(modalId);
+
   const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
-  const page = PAGES.filter((item) => item.page === name)[0];
+
+  const handleOpenModal = (id) => {
+    handleItemClick(page?.route, page?.page);
+    navigate(`${page?.route}?modal=${id}`, { replace: true });
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <FetcherTypography>
@@ -37,7 +49,14 @@ export default function HomeScroll({
           <Stack direction="row" spacing={2}>
             {paginatedData.map((item) => (
               <MagicCardBox key={item?.id}>
-                <MagicCard data={item} Content={Content}></MagicCard>
+                <MagicCard
+                  data={item}
+                  Content={Content}
+                  showModal={false}
+                  handleOpenHomeModal={handleOpenModal}
+                  setSelectedCardId={setSelectedCardId}
+                  selectedCardId={selectedCardId}
+                ></MagicCard>
               </MagicCardBox>
             ))}
           </Stack>

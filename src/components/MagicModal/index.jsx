@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { MagicModalBox, MagicModalBoxButton } from "./style";
 
-export default function WizardModal({
+export default function MagicModal({
   open,
   handleClose,
   id,

@@ -58,6 +58,7 @@ export default function Wizards() {
       response={fetchWizards()}
       useModalDataQuery={useGetWizardQuery}
       ModalContent={WizardModalContent}
+      showModal={true}
     />
   );
 }

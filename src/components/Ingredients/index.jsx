@@ -43,6 +43,7 @@ export default function Ingredients() {
       response={response}
       useModalDataQuery={useGetIngredientQuery}
       ModalContent={IngredientModalContent}
+      showModal={false}
     />
   );
 }

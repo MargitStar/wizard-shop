@@ -55,6 +55,7 @@ export default function Elixirs() {
       response={response}
       useModalDataQuery={useGetElixirQuery}
       ModalContent={ElixirModalContent}
+      showModal={true}
     />
   );
 }

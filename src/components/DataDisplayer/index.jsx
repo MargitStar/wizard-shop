@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Pagination } from "@mui/material";
 import {
   FetcherTypography,
@@ -15,10 +15,15 @@ export default function DataDisplayer({
   response,
   useModalDataQuery,
   ModalContent,
+  showModal,
 }) {
   const { data, isLoading, error } = response;
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data ?? []);
+
+  const params = new URLSearchParams(document.location.search);
+  const modalId = params.get("modal");
+  const [selectedCardId, setSelectedCardId] = useState(modalId);
 
   // Just Logging Error For Now, not Displaying any error mesage
   if (error) {
@@ -51,6 +56,9 @@ export default function DataDisplayer({
             Content={Content}
             useModalDataQuery={useModalDataQuery}
             ModalContent={ModalContent}
+            showModal={showModal}
+            selectedCardId={selectedCardId}
+            setSelectedCardId={setSelectedCardId}
           />
         ))}
       </MagicCardBox>

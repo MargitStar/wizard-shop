@@ -19,9 +19,16 @@ export const StyledMagicCard = styled(Card)`
   align-items: center;
   justify-content: center;
   text-align: center;
+`;
+
+export const StyledMagicCardAsButton = styled(StyledMagicCard)`
   cursor: pointer;
 
   &:hover {
+    background-color: #fcebf2;
+  }
+
+  &.active {
     background-color: #fcebf2;
   }
 `;
