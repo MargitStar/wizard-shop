@@ -53,13 +53,12 @@ const fetchSpells = () => {
   return response;
 };
 
-export function SpellsHomeScroll({ handleItemClick }) {
+export function SpellsHomeScroll() {
   return (
     <HomeScroll
       name="Spells"
       Content={SpellsContent}
       response={fetchSpells()}
-      handleItemClick={handleItemClick}
     />
   );
 }

@@ -5,19 +5,15 @@ import { CircularProgress, Stack, Typography } from "@mui/material";
 import usePagination from "../../utils/paginator";
 import { FetcherTypography } from "../DataDisplayer/style";
 import { PAGES } from "../../constants";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { HomeScrollBox } from "./style";
+import { useNavigationContext } from "../../context";
 
-export default function HomeScroll({
-  name,
-  Content,
-  response,
-  handleItemClick,
-}) {
-  const navigate = useNavigate();
+export default function HomeScroll({ name, Content, response }) {
   const page = PAGES.filter((item) => item.page === name)[0];
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
+  const { handleItemClick } = useNavigationContext();
 
   const [selectedCardId, setSelectedCardId] = useState(modalId);
 
@@ -25,8 +21,7 @@ export default function HomeScroll({
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
-    handleItemClick(page?.route, page?.page);
-    navigate(`${page?.route}?modal=${id}`, { replace: true });
+    handleItemClick(`${page?.route}?modal=${id}`, page?.page, true);
     window.scrollTo(0, 0);
   };
   return (
@@ -34,7 +29,10 @@ export default function HomeScroll({
       <FetcherTypography>
         <Link
           to={page?.route}
-          onClick={() => handleItemClick(page?.route, page?.page)}
+          onClick={() => {
+            handleItemClick(page?.route, page?.page, false);
+            window.scroll(0, 0);
+          }}
         >
           {name}
         </Link>

@@ -22,14 +22,13 @@ const IngredientModalContent = ({ data }) => {
   );
 };
 
-export function IngredientsHomeScroll({ handleItemClick }) {
+export function IngredientsHomeScroll() {
   const response = useGetIngredientsQuery();
   return (
     <HomeScroll
       name="Ingredients"
       Content={IngredientsContent}
       response={response}
-      handleItemClick={handleItemClick}
     />
   );
 }

@@ -8,8 +8,10 @@ import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HeaderItem from "../HeaderItem";
 import { PAGES } from "../../constants.js";
+import { useNavigationContext } from "../../context.jsx";
 
-function Header({ handleItemClick, selectedButton }) {
+function Header() {
+  const { selectedButton, handleItemClick } = useNavigationContext();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {

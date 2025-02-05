@@ -37,15 +37,10 @@ const HouseModalContent = ({ data }) => {
   );
 };
 
-export function HousesHomeScroll({ handleItemClick }) {
+export function HousesHomeScroll() {
   const response = useGetHousesQuery();
   return (
-    <HomeScroll
-      name="Houses"
-      Content={HousesContent}
-      response={response}
-      handleItemClick={handleItemClick}
-    />
+    <HomeScroll name="Houses" Content={HousesContent} response={response} />
   );
 }
 

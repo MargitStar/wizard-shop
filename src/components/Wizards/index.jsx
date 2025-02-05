@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { WIZARD_WORLD_BASE_URL } from "../../constants";
+import { PAGES, WIZARD_WORLD_BASE_URL } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
@@ -7,6 +7,7 @@ import { fetchEndpointData } from "../../utils/fetcher";
 import { useGetWizardQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
 import { Link } from "react-router";
+import { useNavigationContext } from "../../context";
 
 const WizardsContent = ({ data }) => {
   return (
@@ -17,6 +18,8 @@ const WizardsContent = ({ data }) => {
 };
 
 const WizardModalContent = ({ data }) => {
+  const { handleItemClick } = useNavigationContext();
+  const elixirsPage = PAGES.filter((item) => item.page === "Elixirs")[0];
   return (
     <Box>
       <Typography variant="h5" component="div">
@@ -32,8 +35,11 @@ const WizardModalContent = ({ data }) => {
         {data?.elixirs.map((elixir) => (
           <Typography key={elixir?.id} component="div">
             <Link
-              to={`/elixirs?modal=${elixir?.id}`}
-              onClick={() => window.scrollTo(0, 0)}
+              to={`${elixirsPage?.route}?modal=${elixir?.id}`}
+              onClick={() => {
+                handleItemClick(elixirsPage?.route, elixirsPage?.page, false);
+                window.scrollTo(0, 0);
+              }}
             >
               {elixir?.name}
             </Link>
@@ -55,13 +61,12 @@ const fetchWizards = () => {
   return response;
 };
 
-export function WizardsHomeScroll({ handleItemClick }) {
+export function WizardsHomeScroll() {
   return (
     <HomeScroll
       name="Wizards"
       Content={WizardsContent}
       response={fetchWizards()}
-      handleItemClick={handleItemClick}
     />
   );
 }
