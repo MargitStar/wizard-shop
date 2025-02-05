@@ -21,7 +21,7 @@ export default function HomeScroll({ name, Content, response }) {
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
-    handleItemClick(`${page?.route}?modal=${id}`, page?.page, true);
+    handleItemClick(`${page?.route}?modal=${id}`, page?.page);
     window.scrollTo(0, 0);
   };
   return (

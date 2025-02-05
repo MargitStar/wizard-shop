@@ -17,9 +17,9 @@ export const NavigationProvider = ({ children }) => {
 
   const [selectedButton, setSelectedButton] = useState(currentPage?.page);
 
-  const handleItemClick = (route, page, needNavigate) => {
+  const handleItemClick = (route, page, needNavigation = true) => {
     if (currentRoute !== route) {
-      if (needNavigate) navigate(route);
+      if (needNavigation) navigate(route);
       setSelectedButton(page);
     }
   };
