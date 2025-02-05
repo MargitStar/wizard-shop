@@ -55,7 +55,7 @@ export default function MagicCard({
               <Content data={data} />
             </CardContent>
           </StyledMagicCardAsButton>
-        ) : !showModal ? (
+        ) : homeModal ? (
           <StyledMagicCardAsButton
             variant="outlined"
             onClick={() => {

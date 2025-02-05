@@ -53,6 +53,7 @@ export default function HomeScroll({
                   data={item}
                   Content={Content}
                   showModal={false}
+                  homeModal={true}
                   handleOpenHomeModal={handleOpenModal}
                   setSelectedCardId={setSelectedCardId}
                   selectedCardId={selectedCardId}
