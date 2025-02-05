@@ -6,6 +6,7 @@ import { Typography, Box } from "@mui/material";
 import { fetchEndpointData } from "../../utils/fetcher";
 import { useGetWizardQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
+import { Link } from "react-router";
 
 const WizardsContent = ({ data }) => {
   return (
@@ -21,8 +22,23 @@ const WizardModalContent = ({ data }) => {
       <Typography variant="h5" component="div">
         {data?.firstName} {data?.lastName}
       </Typography>
-      <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-        Created Elixirs: {data?.elixirs.map((elixir) => elixir.name).join(", ")}
+
+      <Typography
+        component="div"
+        gutterBottom
+        sx={{ color: "text.secondary", fontSize: 14 }}
+      >
+        Created Elixirs:{" "}
+        {data?.elixirs.map((elixir) => (
+          <Typography key={elixir?.id} component="div">
+            <Link
+              to={`/elixirs?modal=${elixir?.id}`}
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              {elixir?.name}
+            </Link>
+          </Typography>
+        ))}
       </Typography>
       <Typography></Typography>
     </Box>
