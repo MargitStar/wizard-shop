@@ -71,7 +71,6 @@ export default function Spells() {
       response={fetchSpells()}
       useModalDataQuery={useGetSpellQuery}
       ModalContent={ModalSpellContent}
-      showModal={true}
     />
   );
 }

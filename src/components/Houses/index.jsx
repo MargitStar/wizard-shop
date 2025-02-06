@@ -53,7 +53,6 @@ export default function Houses() {
       response={response}
       useModalDataQuery={useGetHouseQuery}
       ModalContent={HouseModalContent}
-      showModal={true}
     />
   );
 }

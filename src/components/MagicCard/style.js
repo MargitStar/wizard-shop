@@ -29,6 +29,6 @@ export const StyledMagicCardAsButton = styled(StyledMagicCard)`
   }
 
   &.active {
-    background-color: #fcebf2;
+    background-color: #efb6c8;
   }
 `;

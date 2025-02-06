@@ -13,11 +13,11 @@ export default function HomeScroll({ name, Content, response }) {
   const page = PAGES.filter((item) => item.page === name)[0];
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
-  const { handleItemClick } = useNavigationContext();
-
   const [selectedCardId, setSelectedCardId] = useState(modalId);
 
-  const { data, isLoading, error } = response;
+  const { handleItemClick } = useNavigationContext();
+
+  const { data, isLoading } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
@@ -46,13 +46,16 @@ export default function HomeScroll({ name, Content, response }) {
         ) : (
           <Stack direction="row" spacing={2}>
             {paginatedData.map((item) => (
-              <MagicCardBox key={item?.id}>
+              <MagicCardBox
+                key={item?.id}
+                component={Link}
+                to={`${page?.route}?modal=${item?.id}`}
+                onClick={handleOpenModal}
+              >
                 <MagicCard
                   data={item}
                   Content={Content}
                   showModal={false}
-                  homeModal={true}
-                  handleOpenHomeModal={handleOpenModal}
                   setSelectedCardId={setSelectedCardId}
                   selectedCardId={selectedCardId}
                 ></MagicCard>

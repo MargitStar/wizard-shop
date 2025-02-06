@@ -14,9 +14,7 @@ export default function MagicCard({
   data,
   useModalDataQuery,
   ModalContent,
-  showModal,
-  homeModal,
-  handleOpenHomeModal,
+  showModal = true,
   setSelectedCardId,
   selectedCardId,
 }) {
@@ -50,17 +48,6 @@ export default function MagicCard({
             variant="outlined"
             onClick={handleOpenModal}
             className={selectedCardId === data?.id ? "active" : undefined}
-          >
-            <CardContent>
-              <Content data={data} />
-            </CardContent>
-          </StyledMagicCardAsButton>
-        ) : homeModal ? (
-          <StyledMagicCardAsButton
-            variant="outlined"
-            onClick={() => {
-              handleOpenHomeModal(data?.id);
-            }}
           >
             <CardContent>
               <Content data={data} />
