@@ -13,15 +13,16 @@ export default function HomeScroll({ name, Content, response }) {
   const page = PAGES.filter((item) => item.page === name)[0];
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
-  const [selectedCardId, setSelectedCardId] = useState(modalId);
 
   const { handleItemClick } = useNavigationContext();
-
   const { data, isLoading } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
-    handleItemClick(`${page?.route}?modal=${id}`, page?.page);
+    if (page?.page === "Ingredients")
+      handleItemClick(`${page?.route}`, page?.page, false);
+    else handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
+
     window.scrollTo(0, 0);
   };
   return (
@@ -49,15 +50,18 @@ export default function HomeScroll({ name, Content, response }) {
               <MagicCardBox
                 key={item?.id}
                 component={Link}
-                to={`${page?.route}?modal=${item?.id}`}
+                to={
+                  page?.page === "Ingredients"
+                    ? `${page?.route}`
+                    : `${page?.route}?modal=${item?.id}`
+                }
                 onClick={handleOpenModal}
               >
                 <MagicCard
                   data={item}
                   Content={Content}
-                  showModal={false}
-                  setSelectedCardId={setSelectedCardId}
-                  selectedCardId={selectedCardId}
+                  isClickable={false}
+                  selectedCardId={modalId}
                 ></MagicCard>
               </MagicCardBox>
             ))}

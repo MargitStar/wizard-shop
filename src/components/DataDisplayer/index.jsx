@@ -8,6 +8,8 @@ import {
 } from "./style";
 import MagicCard from "../MagicCard";
 import usePagination from "../../utils/paginator";
+import MagicModal from "../MagicModal";
+import { useNavigate } from "react-router";
 
 export default function DataDisplayer({
   name,
@@ -15,8 +17,9 @@ export default function DataDisplayer({
   response,
   useModalDataQuery,
   ModalContent,
-  showModal,
+  showModal = true,
 }) {
+  const navigate = useNavigate();
   const { data, isLoading, error } = response;
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data ?? []);
@@ -24,6 +27,16 @@ export default function DataDisplayer({
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
   const [selectedCardId, setSelectedCardId] = useState(modalId);
+
+  const handleCloseModal = () => {
+    setSelectedCardId("");
+    navigate(``, { replace: true });
+  };
+
+  const handleOpenModal = (id) => {
+    window.history.pushState("", "", window.location.href + `?modal=${id}`);
+    setSelectedCardId(id);
+  };
 
   // Just Logging Error For Now, not Displaying any error mesage
   if (error) {
@@ -54,13 +67,20 @@ export default function DataDisplayer({
             key={row.id}
             data={row}
             Content={Content}
-            useModalDataQuery={useModalDataQuery}
-            ModalContent={ModalContent}
-            showModal={showModal}
+            isClickable={showModal}
             selectedCardId={selectedCardId}
-            setSelectedCardId={setSelectedCardId}
+            handleOpenModal={handleOpenModal}
           />
         ))}
+        {selectedCardId && showModal && (
+          <MagicModal
+            open={!!selectedCardId}
+            handleClose={handleCloseModal}
+            id={selectedCardId}
+            useModalDataQuery={useModalDataQuery}
+            ModalContent={ModalContent}
+          />
+        )}
       </MagicCardBox>
       <PaginationBox>
         {totalPages > 1 && (
