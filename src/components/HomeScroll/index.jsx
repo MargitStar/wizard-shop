@@ -16,7 +16,7 @@ export default function HomeScroll({ name, Content, response }) {
   const modalId = params.get("modal");
 
   const { handleItemClick } = useNavigationContext();
-  const { data, isLoading } = response;
+  const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
@@ -29,17 +29,26 @@ export default function HomeScroll({ name, Content, response }) {
   return (
     <>
       <FetcherTypography>
-        <Link
-          to={page?.route}
-          onClick={() => {
-            handleItemClick(page?.route, page?.page, false);
-            window.scroll(0, 0);
-          }}
-        >
-          {name}
-        </Link>
+        {error ? (
+          name
+        ) : (
+          <Link
+            to={page?.route}
+            onClick={() => {
+              handleItemClick(page?.route, page?.page, false);
+              window.scroll(0, 0);
+            }}
+          >
+            {name}
+          </Link>
+        )}
       </FetcherTypography>
       <HomeScrollBox>
+        {error && (
+          <Typography sx={{ mt: 2 }}>
+            {name} are not availbale at the moment, please try again later
+          </Typography>
+        )}
         {isLoading ? (
           <>
             <CircularProgress />
