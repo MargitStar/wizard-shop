@@ -10,6 +10,9 @@ import MagicCard from "../MagicCard";
 import usePagination from "../../utils/paginator";
 import MagicModal from "../MagicModal";
 import { useNavigate } from "react-router";
+import ErrorModal from "../ErrorModal";
+import { useNavigationContext } from "../../context";
+import { PAGES, PagesEnum } from "../../constants";
 
 export default function DataDisplayer({
   name,
@@ -24,6 +27,7 @@ export default function DataDisplayer({
   const { totalPages, paginatedData, currentPage, handlePageChange } =
     usePagination(data ?? []);
 
+  const { handleItemClick } = useNavigationContext();
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
   const [selectedCardId, setSelectedCardId] = useState(modalId);
@@ -38,9 +42,16 @@ export default function DataDisplayer({
     setSelectedCardId(id);
   };
 
-  // Just Logging Error For Now, not Displaying any error mesage
   if (error) {
-    console.log(error);
+    console.log("Error >>>", error);
+    const homePage = PAGES.find((item) => item.page === PagesEnum.HOME);
+    return (
+      <ErrorModal
+        openModal={true}
+        error={error}
+        handleClose={() => handleItemClick(homePage?.route, homePage?.page)}
+      />
+    );
   }
 
   if (isLoading) {

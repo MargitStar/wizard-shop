@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { MagicModalBox, MagicModalBoxButton } from "./style";
+import ErrorModal from "../ErrorModal";
 
 export default function MagicModal({
   open,
@@ -13,12 +14,11 @@ export default function MagicModal({
   ModalContent,
 }) {
   const { data, isLoading, error } = useModalDataQuery(id);
+
   if (error) {
-    console.error("An error occured:", error);
+    console.error("Error in Magic Modal >>>", error);
     return (
-      <Modal open={open} onClose={handleClose}>
-        <MagicModalBox>{error}</MagicModalBox>
-      </Modal>
+      <ErrorModal openModal={true} error={error} handleClose={handleClose} />
     );
   }
 
