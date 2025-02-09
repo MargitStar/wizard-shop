@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const MagicCardBox = styled(Box)`
   min-width: 275px;
-  max-width: 345px;
+  max-width: 375px;
   height: 200px;
   flex: 1 1 calc(33.33% - 16px);
   margin-bottom: 2px;
