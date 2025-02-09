@@ -83,16 +83,16 @@ export default function DataDisplayer({
             handleOpenModal={handleOpenModal}
           />
         ))}
-        {selectedCardId && showModal && (
-          <MagicModal
-            open={!!selectedCardId}
-            handleClose={handleCloseModal}
-            id={selectedCardId}
-            useModalDataQuery={useModalDataQuery}
-            ModalContent={ModalContent}
-          />
-        )}
       </MagicCardBox>
+      {selectedCardId && showModal && (
+        <MagicModal
+          open={!!selectedCardId}
+          handleClose={handleCloseModal}
+          id={selectedCardId}
+          useModalDataQuery={useModalDataQuery}
+          ModalContent={ModalContent}
+        />
+      )}
       <PaginationBox>
         {totalPages > 1 && (
           <Pagination
