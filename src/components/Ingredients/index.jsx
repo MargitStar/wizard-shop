@@ -3,6 +3,7 @@ import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetIngredientsQuery, useGetIngredientQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
+import { PagesEnum } from "../../constants";
 
 const IngredientsContent = ({ data }) => {
   return (
@@ -26,7 +27,7 @@ export function IngredientsHomeScroll() {
   const response = useGetIngredientsQuery();
   return (
     <HomeScroll
-      name="Ingredients"
+      name={PagesEnum.INGREDIENTS}
       Content={IngredientsContent}
       response={response}
     />
@@ -37,7 +38,7 @@ export default function Ingredients() {
   const response = useGetIngredientsQuery();
   return (
     <DataDisplayer
-      name="Ingredients"
+      name={PagesEnum.INGREDIENTS}
       Content={IngredientsContent}
       response={response}
       useModalDataQuery={useGetIngredientQuery}

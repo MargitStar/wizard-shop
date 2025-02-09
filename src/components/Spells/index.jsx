@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { WIZARD_WORLD_BASE_URL } from "../../constants";
+import { PagesEnum, WIZARD_WORLD_BASE_URL } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import DataDisplayer from "../DataDisplayer";
 import { fetchEndpointData } from "../../utils/fetcher";
@@ -56,7 +56,7 @@ const fetchSpells = () => {
 export function SpellsHomeScroll() {
   return (
     <HomeScroll
-      name="Spells"
+      name={PagesEnum.SPELLS}
       Content={SpellsContent}
       response={fetchSpells()}
     />
@@ -66,7 +66,7 @@ export function SpellsHomeScroll() {
 export default function Spells() {
   return (
     <DataDisplayer
-      name="Spells"
+      name={PagesEnum.SPELLS}
       Content={SpellsContent}
       response={fetchSpells()}
       useModalDataQuery={useGetSpellQuery}

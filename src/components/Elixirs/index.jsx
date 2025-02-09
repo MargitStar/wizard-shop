@@ -3,6 +3,7 @@ import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetElixirsQuery, useGetElixirQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
+import { PagesEnum } from "../../constants";
 
 const ElixirsContent = ({ data }) => {
   return (
@@ -37,7 +38,11 @@ const ElixirModalContent = ({ data }) => {
 export function ElixirsHomeScroll() {
   const response = useGetElixirsQuery();
   return (
-    <HomeScroll name="Elixirs" Content={ElixirsContent} response={response} />
+    <HomeScroll
+      name={PagesEnum.ELIXIRS}
+      Content={ElixirsContent}
+      response={response}
+    />
   );
 }
 
@@ -45,7 +50,7 @@ export default function Elixirs() {
   const response = useGetElixirsQuery();
   return (
     <DataDisplayer
-      name="Elixirs"
+      name={PagesEnum.ELIXIRS}
       Content={ElixirsContent}
       response={response}
       useModalDataQuery={useGetElixirQuery}

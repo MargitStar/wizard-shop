@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PAGES, WIZARD_WORLD_BASE_URL } from "../../constants";
+import { PAGES, WIZARD_WORLD_BASE_URL, PagesEnum } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
@@ -19,7 +19,7 @@ const WizardsContent = ({ data }) => {
 
 const WizardModalContent = ({ data }) => {
   const { handleItemClick } = useNavigationContext();
-  const elixirsPage = PAGES.filter((item) => item.page === "Elixirs")[0];
+  const elixirsPage = PAGES.find((item) => item.page === PagesEnum.ELIXIRS);
   return (
     <Box>
       <Typography variant="h5" component="div">
@@ -64,7 +64,7 @@ const fetchWizards = () => {
 export function WizardsHomeScroll() {
   return (
     <HomeScroll
-      name="Wizards"
+      name={PagesEnum.WIZARDS}
       Content={WizardsContent}
       response={fetchWizards()}
     />
@@ -74,7 +74,7 @@ export function WizardsHomeScroll() {
 export default function Wizards() {
   return (
     <DataDisplayer
-      name="Wizards"
+      name={PagesEnum.WIZARDS}
       Content={WizardsContent}
       response={fetchWizards()}
       useModalDataQuery={useGetWizardQuery}

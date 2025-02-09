@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MagicCard from "../MagicCard";
 import { MagicCardBox } from "../DataDisplayer/style";
 import { CircularProgress, Stack, Typography } from "@mui/material";
@@ -8,6 +8,7 @@ import { PAGES } from "../../constants";
 import { Link } from "react-router";
 import { HomeScrollBox } from "./style";
 import { useNavigationContext } from "../../context";
+import { PagesEnum } from "../../constants";
 
 export default function HomeScroll({ name, Content, response }) {
   const page = PAGES.filter((item) => item.page === name)[0];
@@ -51,7 +52,7 @@ export default function HomeScroll({ name, Content, response }) {
                 key={item?.id}
                 component={Link}
                 to={
-                  page?.page === "Ingredients"
+                  page?.page === PagesEnum.INGREDIENTS
                     ? `${page?.route}`
                     : `${page?.route}?modal=${item?.id}`
                 }

@@ -3,6 +3,7 @@ import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
 import { useGetHousesQuery, useGetHouseQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
+import { PagesEnum } from "../../constants";
 
 export const HousesContent = ({ data }) => {
   return (
@@ -40,7 +41,11 @@ const HouseModalContent = ({ data }) => {
 export function HousesHomeScroll() {
   const response = useGetHousesQuery();
   return (
-    <HomeScroll name="Houses" Content={HousesContent} response={response} />
+    <HomeScroll
+      name={PagesEnum.HOUSES}
+      Content={HousesContent}
+      response={response}
+    />
   );
 }
 
@@ -48,7 +53,7 @@ export default function Houses() {
   const response = useGetHousesQuery();
   return (
     <DataDisplayer
-      name="Houses"
+      name={PagesEnum.HOUSES}
       Content={HousesContent}
       response={response}
       useModalDataQuery={useGetHouseQuery}
