@@ -20,7 +20,7 @@ export default function HomeScroll({ name, Content, response }) {
   const { paginatedData } = usePagination(data ?? [], 10);
 
   const handleOpenModal = (id) => {
-    if (page?.page === "Ingredients")
+    if (page?.page === PagesEnum.INGREDIENTS)
       handleItemClick(`${page?.route}`, page?.page, false);
     else handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
 
@@ -46,7 +46,7 @@ export default function HomeScroll({ name, Content, response }) {
       <HomeScrollBox>
         {error && (
           <Typography sx={{ mt: 2 }}>
-            {name} are not availbale at the moment, please try again later
+            {name} are not available at the moment, please try again later
           </Typography>
         )}
         {isLoading ? (
