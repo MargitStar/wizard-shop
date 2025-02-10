@@ -51,7 +51,7 @@ const WizardModalContent = ({ data }) => {
   );
 };
 
-const fetchWizards = () => {
+const useGetWizards = () => {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.spellWizards?.wizards);
   useEffect(() => {
@@ -62,21 +62,23 @@ const fetchWizards = () => {
 };
 
 export function WizardsHomeScroll() {
+  const response = useGetWizards();
   return (
     <HomeScroll
       name={PagesEnum.WIZARDS}
       Content={WizardsContent}
-      response={fetchWizards()}
+      response={response}
     />
   );
 }
 
 export default function Wizards() {
+  const response = useGetWizards();
   return (
     <DataDisplayer
       name={PagesEnum.WIZARDS}
       Content={WizardsContent}
-      response={fetchWizards()}
+      response={response}
       useModalDataQuery={useGetWizardQuery}
       ModalContent={WizardModalContent}
     />

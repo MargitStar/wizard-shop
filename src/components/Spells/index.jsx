@@ -6,6 +6,7 @@ import { fetchEndpointData } from "../../utils/fetcher";
 import { Typography, Box } from "@mui/material";
 import { useGetSpellQuery } from "../../utils/api";
 import HomeScroll from "../HomeScroll";
+import { useFetcher } from "react-router";
 
 export const SpellsContent = ({ data }) => {
   return (
@@ -43,7 +44,7 @@ const ModalSpellContent = ({ data }) => {
   );
 };
 
-const fetchSpells = () => {
+const useGetSpells = () => {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.spellWizards?.spells);
   useEffect(() => {
@@ -54,21 +55,23 @@ const fetchSpells = () => {
 };
 
 export function SpellsHomeScroll() {
+  const response = useGetSpells();
   return (
     <HomeScroll
       name={PagesEnum.SPELLS}
       Content={SpellsContent}
-      response={fetchSpells()}
+      response={response}
     />
   );
 }
 
 export default function Spells() {
+  const response = useGetSpells();
   return (
     <DataDisplayer
       name={PagesEnum.SPELLS}
       Content={SpellsContent}
-      response={fetchSpells()}
+      response={response}
       useModalDataQuery={useGetSpellQuery}
       ModalContent={ModalSpellContent}
     />
