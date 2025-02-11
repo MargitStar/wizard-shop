@@ -2,21 +2,21 @@ import React from "react";
 
 import DataDisplayer from "../../../../components/DataDisplayer";
 import { PagesEnum } from "../../../../constants";
-import { useGetHousesQuery, useGetHouseQuery } from "../../../../utils/api";
+import { useGetElixirQuery, useGetElixirsQuery } from "../../../../utils/api";
 import Content from "../Content";
 import ModalContent from "../ModalContent";
 
-const Houses = () => {
-  const response = useGetHousesQuery();
+const ElixirsList = () => {
+  const response = useGetElixirsQuery();
   return (
     <DataDisplayer
-      name={PagesEnum.HOUSES}
+      name={PagesEnum.ELIXIRS}
       Content={Content}
       response={response}
-      useModalDataQuery={useGetHouseQuery}
+      useModalDataQuery={useGetElixirQuery}
       ModalContent={ModalContent}
     />
   );
 };
 
-export default Houses;
+export default ElixirsList;

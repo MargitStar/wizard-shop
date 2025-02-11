@@ -5,7 +5,7 @@ import { PagesEnum } from "../../../../constants";
 import { useGetIngredientsQuery } from "../../../../utils/api";
 import Content from "../Content";
 
-const Ingredients = () => {
+const IngredientsList = () => {
   const response = useGetIngredientsQuery();
   return (
     <DataDisplayer
@@ -17,4 +17,4 @@ const Ingredients = () => {
   );
 };
 
-export default Ingredients;
+export default IngredientsList;

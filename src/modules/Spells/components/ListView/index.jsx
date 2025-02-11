@@ -1,20 +1,22 @@
 import React from "react";
-
 import DataDisplayer from "../../../../components/DataDisplayer";
 import { PagesEnum } from "../../../../constants";
-import { useGetElixirQuery, useGetElixirsQuery } from "../../../../utils/api";
+import { useGetSpellQuery } from "../../../../utils/api";
 import Content from "../Content";
 import ModalContent from "../ModalContent";
+import { useGetSpells } from "../../utils/hooks";
 
-export default function Elixirs() {
-  const response = useGetElixirsQuery();
+const WizardsList = () => {
+  const response = useGetSpells();
   return (
     <DataDisplayer
-      name={PagesEnum.ELIXIRS}
+      name={PagesEnum.SPELLS}
       Content={Content}
       response={response}
-      useModalDataQuery={useGetElixirQuery}
+      useModalDataQuery={useGetSpellQuery}
       ModalContent={ModalContent}
     />
   );
-}
+};
+
+export default WizardsList;

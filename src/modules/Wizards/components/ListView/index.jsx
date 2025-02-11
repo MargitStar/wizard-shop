@@ -6,7 +6,7 @@ import Content from "../Content";
 import ModalContent from "../ModalContent";
 import { useGetWizards } from "../../utils/hooks";
 
-const Wizards = () => {
+const WizardsList = () => {
   const response = useGetWizards();
   return (
     <DataDisplayer
@@ -19,4 +19,4 @@ const Wizards = () => {
   );
 };
 
-export default Wizards;
+export default WizardsList;

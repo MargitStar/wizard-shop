@@ -1,22 +1,22 @@
 import React from "react";
+
 import DataDisplayer from "../../../../components/DataDisplayer";
 import { PagesEnum } from "../../../../constants";
-import { useGetSpellQuery } from "../../../../utils/api";
+import { useGetHousesQuery, useGetHouseQuery } from "../../../../utils/api";
 import Content from "../Content";
 import ModalContent from "../ModalContent";
-import { useGetSpells } from "../../utils/hooks";
 
-const Spells = () => {
-  const response = useGetSpells();
+const HousesList = () => {
+  const response = useGetHousesQuery();
   return (
     <DataDisplayer
-      name={PagesEnum.SPELLS}
+      name={PagesEnum.HOUSES}
       Content={Content}
       response={response}
-      useModalDataQuery={useGetSpellQuery}
+      useModalDataQuery={useGetHouseQuery}
       ModalContent={ModalContent}
     />
   );
 };
 
-export default Spells;
+export default HousesList;
