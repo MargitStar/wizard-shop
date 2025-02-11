@@ -1,9 +1,9 @@
 import React from "react";
-import { ElixirsHomeScroll } from "../Elixirs";
-import { HousesHomeScroll } from "../Houses";
-import { IngredientsHomeScroll } from "../Ingredients";
-import { SpellsHomeScroll } from "../Spells";
-import { WizardsHomeScroll } from "../Wizards";
+import HousesHomeScroll from "../../modules/Houses/components/Scroll";
+import ElixirsHomeScroll from "../../modules/Elixirs/components/Scroll";
+import SpellsHomeScroll from "../../modules/Spells/components/Scroll";
+import WizardsHomeScroll from "../../modules/Wizards/components/Scroll";
+import IngredientsHomeScroll from "../../modules/Ingredients/components/Scroll";
 
 export default function Home() {
   return (

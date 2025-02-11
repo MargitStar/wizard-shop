@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router";
-import Elixirs from "./components/Elixirs";
-import Wizards from "./components/Wizards";
-import Houses from "./components/Houses";
-import Spells from "./components/Spells";
-import Ingredients from "./components/Ingredients";
 import Home from "./components/Home";
 import { NavigationProvider } from "./context";
+import Houses from "./modules/Houses/components/Houses";
+import Elixirs from "./modules/Elixirs/components/Elixirs";
+import Spells from "./modules/Spells/components/Spells";
+import Wizards from "./modules/Wizards/components/Wizards";
+import Ingredients from "./modules/Ingredients/components/Ingredients";
 
 const App = () => {
   return (
