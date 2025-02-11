@@ -5,7 +5,6 @@ import { ErrorModalBox } from "./style";
 import { Box } from "@mui/material";
 
 export default function ErrorModal({ openModal, handleClose, error }) {
-  console.log("Open MOdal", openModal);
   return (
     <Modal open={openModal} onClose={handleClose}>
       <ErrorModalBox>
