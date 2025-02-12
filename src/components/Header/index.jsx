@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import HeaderItem from "../../modules/HeaderItem/components/Item/index.jsx";
+import HeaderItem from "../HeaderItem/index.jsx";
 import { PAGES } from "../../constants.js";
 import { useNavigationContext } from "../../context.jsx";
 
