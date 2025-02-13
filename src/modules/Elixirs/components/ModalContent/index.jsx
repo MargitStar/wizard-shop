@@ -1,17 +1,7 @@
 import React from "react";
-import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
-import { useGetElixirsQuery, useGetElixirQuery } from "../../utils/api";
 
-const ElixirsContent = ({ data }) => {
-  return (
-    <Typography variant="h5" component="div">
-      {data?.name}
-    </Typography>
-  );
-};
-
-const ElixirModalContent = ({ data }) => {
+const ModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
@@ -33,15 +23,4 @@ const ElixirModalContent = ({ data }) => {
   );
 };
 
-export default function Elixirs() {
-  const response = useGetElixirsQuery();
-  return (
-    <DataDisplayer
-      name="Elixirs"
-      Content={ElixirsContent}
-      response={response}
-      useModalDataQuery={useGetElixirQuery}
-      ModalContent={ElixirModalContent}
-    />
-  );
-}
+export default ModalContent;

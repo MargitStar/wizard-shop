@@ -1,41 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { CardContent } from "@mui/material";
-import { MagicCardBox, StyledMagicCard } from "./style";
-import WizardModal from "../WizardModal";
+import {
+  MagicCardBox,
+  StyledMagicCard,
+  StyledMagicCardAsButton,
+} from "./style";
 
 export default function MagicCard({
   Content,
   data,
-  useModalDataQuery,
-  ModalContent,
+  isClickable = true,
+  handleOpenModal,
+  selectedCardId,
 }) {
-  const [openModal, setOpenModal] = useState(false);
-  const [selectedCardId, setSelectedCardId] = useState(false);
-
-  const handleCloseModal = () => setOpenModal(false);
-  const handleOpenModal = () => {
-    setOpenModal(true);
-    setSelectedCardId(data?.id);
-  };
   return (
     <>
       <MagicCardBox>
-        <StyledMagicCard variant="outlined" onClick={handleOpenModal}>
-          <CardContent>
-            <Content data={data} />
-          </CardContent>
-        </StyledMagicCard>
+        {isClickable ? (
+          <StyledMagicCardAsButton
+            variant="outlined"
+            onClick={() => handleOpenModal(data?.id)}
+            className={selectedCardId === data?.id ? "active" : undefined}
+          >
+            <CardContent>
+              <Content data={data} />
+            </CardContent>
+          </StyledMagicCardAsButton>
+        ) : (
+          <StyledMagicCard variant="outlined">
+            <CardContent>
+              <Content data={data} />
+            </CardContent>
+          </StyledMagicCard>
+        )}
       </MagicCardBox>
-      {openModal && (
-        <WizardModal
-          open={openModal}
-          handleClose={handleCloseModal}
-          id={selectedCardId}
-          useModalDataQuery={useModalDataQuery}
-          ModalContent={ModalContent}
-        />
-      )}
     </>
   );
 }

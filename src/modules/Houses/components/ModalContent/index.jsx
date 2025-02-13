@@ -1,17 +1,7 @@
 import React from "react";
-import DataDisplayer from "../DataDisplayer";
 import { Typography, Box } from "@mui/material";
-import { useGetHousesQuery, useGetHouseQuery } from "../../utils/api";
 
-const HousesContent = ({ data }) => {
-  return (
-    <Typography variant="h5" component="div">
-      {data?.name}
-    </Typography>
-  );
-};
-
-const HouseModalContent = ({ data }) => {
+const ModalContent = ({ data }) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
@@ -36,15 +26,4 @@ const HouseModalContent = ({ data }) => {
   );
 };
 
-export default function Houses() {
-  const response = useGetHousesQuery();
-  return (
-    <DataDisplayer
-      name="Houses"
-      Content={HousesContent}
-      response={response}
-      useModalDataQuery={useGetHouseQuery}
-      ModalContent={HouseModalContent}
-    />
-  );
-}
+export default ModalContent;
