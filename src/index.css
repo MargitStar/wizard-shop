@@ -5,6 +5,7 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   margin: 0;
+  align-items: center;
 }
 
 h1 {

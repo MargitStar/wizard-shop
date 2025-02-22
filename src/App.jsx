@@ -7,20 +7,35 @@ import Elixirs from "./modules/Elixirs/components/ListView";
 import Spells from "./modules/Spells/components/ListView";
 import Wizards from "./modules/Wizards/components/ListView";
 import Ingredients from "./modules/Ingredients/components/ListView";
+import NotFound from "./modules/NotFound/components/NotFound";
 import Home from "./modules/Home/components/Home";
+import Login from "./modules/Login/components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+
   return (
     <>
       <NavigationProvider>
-        <Header />
+        {isAuthorized && <Header />}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/elixirs" element={<Elixirs />} />
-          <Route path="/wizards" element={<Wizards />} />
-          <Route path="/houses" element={<Houses />} />
-          <Route path="/spells" element={<Spells />} />
-          <Route path="/ingredients" element={<Ingredients />} />
+          <Route
+            path="/login"
+            element={<Login isAuthorized={isAuthorized} />}
+          />
+
+          <Route element={<ProtectedRoute isAuthorized={isAuthorized} />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/elixirs" element={<Elixirs />} />
+            <Route path="/wizards" element={<Wizards />} />
+            <Route path="/houses" element={<Houses />} />
+            <Route path="/spells" element={<Spells />} />
+            <Route path="/ingredients" element={<Ingredients />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </NavigationProvider>
     </>
