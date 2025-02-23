@@ -13,7 +13,6 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       const { email, password } = action.payload;
-      console.log("SUBBBMMMIIIT");
 
       if (usersDB[email] && usersDB[email] === password) {
         state.isAuthorized = true;
@@ -21,7 +20,6 @@ const authSlice = createSlice({
       } else {
         state.isAuthorized = false;
         state.error = "Invalid username or password";
-        console.log("ERRRRROOOORRR");
       }
     },
     logout: (state) => {

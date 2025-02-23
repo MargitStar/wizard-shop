@@ -12,6 +12,7 @@ const Login = () => {
   const { control, handleSubmit } = useForm();
   const { handleItemClick: handleNavigation } = useNavigationContext();
   const homePage = PAGES.find((item) => item.page === PagesEnum.HOME);
+
   const onSubmit = (data) => {
     const email = data?.email;
     const password = data?.password;
