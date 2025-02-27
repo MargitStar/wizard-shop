@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../../utils/authSlice";
-import LoginModal from "../../../../components/LoginModal";
+import LoginModal from "../../components/LoginContent";
 import { useNavigationContext } from "../../../../context";
 import { PAGES, PagesEnum } from "../../../../constants";
 
-const Login = () => {
+const LoginContainer = () => {
   const { error, isAuthorized } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { control, handleSubmit } = useForm();
@@ -35,4 +35,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginContainer;

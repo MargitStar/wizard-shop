@@ -9,7 +9,7 @@ import Wizards from "./modules/Wizards/components/ListView";
 import Ingredients from "./modules/Ingredients/components/ListView";
 import NotFound from "./modules/NotFound/components/NotFound";
 import Home from "./modules/Home/components/Home";
-import Login from "./modules/Login/components/Login";
+import Login from "./modules/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 
