@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HeaderItem from "../HeaderItem/index.jsx";
 import { PAGES } from "../../constants.js";
 import { useNavigationContext } from "../../context.jsx";
+import LogoutButton from "../LogoutButton/index.jsx";
 
 function Header() {
   const { selectedButton, handleItemClick } = useNavigationContext();
@@ -80,6 +81,7 @@ function Header() {
               />
             ))}
           </Box>
+          <LogoutButton />
         </Toolbar>
       </Container>
     </AppBar>
