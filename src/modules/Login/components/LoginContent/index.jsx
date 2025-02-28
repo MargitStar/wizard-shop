@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Typography } from "@mui/material";
 import FormTextField from "../../../../components/FormTextField";
-import { LoginModalBox } from "./style";
+import { LoginContentBox } from "./style";
 
-const LoginModal = ({ error, control, handleSubmit, onSubmit }) => {
+const LoginContent = ({ error, control, handleSubmit, onSubmit }) => {
   return (
-    <LoginModalBox>
+    <LoginContentBox>
       <Typography variant="h5" mb={2} align="center">
         Sign In
       </Typography>
@@ -21,8 +21,8 @@ const LoginModal = ({ error, control, handleSubmit, onSubmit }) => {
           Sign In
         </Button>
       </form>
-    </LoginModalBox>
+    </LoginContentBox>
   );
 };
 
-export default LoginModal;
+export default LoginContent;

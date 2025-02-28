@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 
-export const LoginModalBox = styled(Box)`
+export const LoginContentBox = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;

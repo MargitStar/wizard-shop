@@ -2,10 +2,10 @@ import { Box, Card } from "@mui/material";
 import styled from "@emotion/styled";
 
 export const MagicCardBox = styled(Box)`
-  min-width: 300px;
+  min-width: 250px;
   max-width: 300px;
+  width: 100%;
   height: 200px;
-  flex: 1 1 calc(33.33% - 16px);
   margin-bottom: 2px;
   white-space: wrap;
 `;

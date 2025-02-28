@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../../utils/authSlice";
-import LoginModal from "../../components/LoginContent";
+import LoginContent from "../../components/LoginContent";
 import { useNavigationContext } from "../../../../context";
 import { PAGES, PagesEnum } from "../../../../constants";
 
@@ -26,7 +26,7 @@ const LoginContainer = () => {
   }, [isAuthorized, handleNavigation, homePage]);
 
   return (
-    <LoginModal
+    <LoginContent
       error={error}
       control={control}
       handleSubmit={handleSubmit}
