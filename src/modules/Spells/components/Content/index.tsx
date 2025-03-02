@@ -1,7 +1,13 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-const Content = ({ data }) => {
+type ContentProps = {
+  data: {
+    name?: string;
+  };
+};
+
+const Content = ({ data }: ContentProps) => {
   return (
     <Typography variant="h5" component="div">
       {data?.name}

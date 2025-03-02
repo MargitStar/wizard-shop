@@ -4,7 +4,22 @@ import { useNavigationContext } from "../../../../context";
 import { PAGES, PagesEnum } from "../../../../constants";
 import { Link } from "react-router";
 
-const ModalContent = ({ data }) => {
+type ElixirData = {
+  id?: string;
+  name?: string;
+};
+
+type WizardData = {
+  firstName?: string;
+  lastName?: string;
+  elixirs?: ElixirData[];
+};
+
+type ModalContentProps = {
+  data: WizardData;
+};
+
+const ModalContent = ({ data }: ModalContentProps) => {
   const { handleItemClick } = useNavigationContext();
   const elixirsPage = PAGES.find((item) => item.page === PagesEnum.ELIXIRS);
   return (
@@ -19,7 +34,7 @@ const ModalContent = ({ data }) => {
         sx={{ color: "text.secondary", fontSize: 14 }}
       >
         Created Elixirs:{" "}
-        {data?.elixirs.map((elixir) => (
+        {(data?.elixirs ?? []).map((elixir) => (
           <Typography key={elixir?.id} component="div">
             <Link
               to={`${elixirsPage?.route}?modal=${elixir?.id}`}

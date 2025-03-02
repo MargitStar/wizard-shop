@@ -13,15 +13,34 @@ import { useNavigate } from "react-router";
 import ErrorModal from "../ErrorModal";
 import { useNavigationContext } from "../../context";
 import { PAGES, PagesEnum } from "../../constants";
+import MagicCardData from "../shared/types/MagicCardData";
+import ErrorProp from "../shared/types/Error";
 
-export default function DataDisplayer({
+type DataDisplayerProps = {
+  name: string;
+  Content: React.FC<{ data: MagicCardData }>;
+  response: {
+    data: MagicCardData[];
+    isLoading: boolean;
+    error?: ErrorProp;
+  };
+  useModalDataQuery: (id: string) => {
+    data: MagicCardData;
+    isLoading: boolean;
+    error?: ErrorProp;
+  };
+  ModalContent: React.FC<{ data: MagicCardData }>;
+  showModal?: boolean;
+};
+
+const DataDisplayer = ({
   name,
   Content,
   response,
   useModalDataQuery,
   ModalContent,
   showModal = true,
-}) {
+}: DataDisplayerProps) => {
   const navigate = useNavigate();
   const { data, isLoading, error } = response;
   const { totalPages, paginatedData, currentPage, handlePageChange } =
@@ -30,14 +49,15 @@ export default function DataDisplayer({
   const { handleItemClick } = useNavigationContext();
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
-  const [selectedCardId, setSelectedCardId] = useState(modalId);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(modalId);
 
   const handleCloseModal = () => {
     setSelectedCardId("");
     navigate(``, { replace: true });
   };
 
-  const handleOpenModal = (id) => {
+  const handleOpenModal = (id: string | undefined) => {
+    if (!id) return;
     window.history.pushState("", "", window.location.href + `?modal=${id}`);
     setSelectedCardId(id);
   };
@@ -73,7 +93,7 @@ export default function DataDisplayer({
         <FetcherTypography>{name}</FetcherTypography>
       </Box>
       <MagicCardBox>
-        {paginatedData.map((row) => (
+        {paginatedData.map((row: { id: string }) => (
           <MagicCard
             key={row.id}
             data={row}
@@ -107,4 +127,6 @@ export default function DataDisplayer({
       </PaginationBox>
     </>
   );
-}
+};
+
+export default DataDisplayer;

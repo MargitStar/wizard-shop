@@ -1,8 +1,14 @@
 import { TextField } from "@mui/material";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, Control, FieldValues } from "react-hook-form";
 
-const FormTextField = ({ type, label, control }) => {
+type FormTextFieldProps = {
+  type: string;
+  label: string;
+  control: Control<FieldValues>;
+};
+
+const FormTextField = ({ type, label, control }: FormTextFieldProps) => {
   return (
     <Controller
       name={type}

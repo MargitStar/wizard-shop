@@ -1,7 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 import React from "react";
 
-const ProtectedRoute = ({ isAuthorized }) => {
+type ProtectedRouteProps = {
+  isAuthorized: boolean;
+};
+
+const ProtectedRoute = ({ isAuthorized }: ProtectedRouteProps) => {
   return isAuthorized ? <Outlet /> : <Navigate to="/login" replace />;
 };
 

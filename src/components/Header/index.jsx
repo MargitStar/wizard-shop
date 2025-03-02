@@ -6,12 +6,12 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import HeaderItem from "../HeaderItem/index.jsx";
-import { PAGES } from "../../constants.js";
-import { useNavigationContext } from "../../context.jsx";
-import LogoutButton from "../LogoutButton/index.jsx";
+import HeaderItem from "../HeaderItem";
+import { PAGES } from "../../constants";
+import { useNavigationContext } from "../../context";
+import LogoutButton from "../LogoutButton";
 
-function Header() {
+const Header = () => {
   const { selectedButton, handleItemClick } = useNavigationContext();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -86,5 +86,5 @@ function Header() {
       </Container>
     </AppBar>
   );
-}
+};
 export default Header;

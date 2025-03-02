@@ -1,14 +1,26 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { ButtonProps, MenuItemProps, Typography } from "@mui/material";
+import { PagesEnum } from "../../constants";
 
-export default function HeaderItem({
+type PagesEnumValues = (typeof PagesEnum)[keyof typeof PagesEnum];
+
+type HeaderItemProps = {
+  route: string;
+  page: PagesEnumValues;
+  selectedButton: PagesEnumValues | undefined;
+  handleCloseNavigation: () => void;
+  handleItemClick: (route: string, page: PagesEnumValues) => void;
+  ButtonComponent: React.ComponentType<ButtonProps | MenuItemProps>;
+};
+
+const HeaderItem = ({
   ButtonComponent,
   handleItemClick,
   handleCloseNavigation,
   selectedButton,
   route,
   page,
-}) {
+}: HeaderItemProps) => {
   return (
     <ButtonComponent
       onClick={() => {
@@ -29,4 +41,6 @@ export default function HeaderItem({
       </Typography>
     </ButtonComponent>
   );
-}
+};
+
+export default HeaderItem;
