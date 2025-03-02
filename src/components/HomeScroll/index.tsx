@@ -9,8 +9,20 @@ import { Link } from "react-router";
 import { HomeScrollBox } from "./style";
 import { useNavigationContext } from "../../context";
 import { PagesEnum } from "../../constants";
+import MagicCardData from "../shared/types/MagicCardData";
+import ErrorProp from "../shared/types/Error";
 
-export default function HomeScroll({ name, Content, response }) {
+type HomeScrollProps = {
+  name: string;
+  response: {
+    data: MagicCardData;
+    isLoading: boolean;
+    error?: ErrorProp;
+  };
+  Content: React.FC<{ data: MagicCardData }>;
+};
+
+const HomeScroll = ({ name, Content, response }: HomeScrollProps) => {
   const page = PAGES.filter((item) => item.page === name)[0];
   const params = new URLSearchParams(document.location.search);
   const modalId = params.get("modal");
@@ -19,7 +31,8 @@ export default function HomeScroll({ name, Content, response }) {
   const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
 
-  const handleOpenModal = (id) => {
+  const handleOpenModal = (id: string | undefined) => {
+    if (!id) return;
     if (page?.page === PagesEnum.INGREDIENTS)
       handleItemClick(`${page?.route}`, page?.page, false);
     else handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
@@ -56,28 +69,30 @@ export default function HomeScroll({ name, Content, response }) {
           </>
         ) : (
           <Stack direction="row" spacing={2}>
-            {paginatedData.map((item) => (
-              <MagicCardBox
-                key={item?.id}
-                component={Link}
+            {paginatedData.map((item: MagicCardData) => (
+              <Link
                 to={
                   page?.page === PagesEnum.INGREDIENTS
                     ? `${page?.route}`
                     : `${page?.route}?modal=${item?.id}`
                 }
-                onClick={handleOpenModal}
+                key={item?.id}
               >
-                <MagicCard
-                  data={item}
-                  Content={Content}
-                  isClickable={false}
-                  selectedCardId={modalId}
-                ></MagicCard>
-              </MagicCardBox>
+                <MagicCardBox onClick={() => handleOpenModal(item?.id)}>
+                  <MagicCard
+                    data={item}
+                    Content={Content}
+                    isClickable={false}
+                    selectedCardId={modalId}
+                  ></MagicCard>
+                </MagicCardBox>
+              </Link>
             ))}
           </Stack>
         )}
       </HomeScrollBox>
     </>
   );
-}
+};
+
+export default HomeScroll;

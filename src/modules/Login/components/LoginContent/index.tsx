@@ -2,8 +2,23 @@ import React from "react";
 import { Button, Typography } from "@mui/material";
 import FormTextField from "../../../../components/FormTextField";
 import { LoginContentBox } from "./style";
+import { Control, FieldValues } from "react-hook-form";
 
-const LoginContent = ({ error, control, handleSubmit, onSubmit }) => {
+type LoginContentProps = {
+  error?: string;
+  control: Control<FieldValues>;
+  handleSubmit: (
+    callback: (data: { email: string; password: string }) => void,
+  ) => (event: React.FormEvent) => void;
+  onSubmit: (data: { email: string; password: string }) => void;
+};
+
+const LoginContent = ({
+  error,
+  control,
+  handleSubmit,
+  onSubmit,
+}: LoginContentProps) => {
   return (
     <LoginContentBox>
       <Typography variant="h5" mb={2} align="center">

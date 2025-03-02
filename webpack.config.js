@@ -18,13 +18,18 @@ module.exports = {
         },
       },
       {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: "ts-loader",
+      },
+      {
         test: /\.css$/, // Match .css files
         use: ["style-loader", "css-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"], // Resolve these extensions
+    extensions: [".js", ".jsx", ".tsx"], // Resolve these extensions
   },
   plugins: [
     new HtmlWebpackPlugin({

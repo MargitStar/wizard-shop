@@ -1,7 +1,24 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 
-const ModalContent = ({ data }) => {
+type HeadsData = {
+  firstName?: string;
+  lastName?: string;
+};
+
+type HouseData = {
+  name?: string;
+  houseColours?: string[];
+  founder?: string;
+  animal?: string;
+  heads?: HeadsData[];
+};
+
+type ModalContentProps = {
+  data: HouseData;
+};
+
+const ModalContent = ({ data }: ModalContentProps) => {
   return (
     <Box>
       <Typography variant="h5" component="div">
@@ -18,7 +35,7 @@ const ModalContent = ({ data }) => {
       </Typography>
       <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
         Heads:{" "}
-        {data?.heads
+        {(data?.heads ?? [])
           .map((head) => `${head.firstName} ${head.lastName}`)
           .join(", ")}
       </Typography>

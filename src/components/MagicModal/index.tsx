@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { MagicModalBox, MagicModalBoxButton } from "./style";
 import ErrorModal from "../ErrorModal";
+import MagicCardData from "../shared/types/MagicCardData";
+import ErrorProp from "../shared/types/Error";
+
+type MagicModalProps = {
+  open: boolean;
+  handleClose: () => void;
+  id: string;
+  useModalDataQuery: (id: string) => {
+    data: MagicCardData;
+    isLoading: boolean;
+    error?: ErrorProp;
+  };
+  ModalContent: React.FC<{ data: MagicCardData }>;
+};
 
 export default function MagicModal({
   open,
-  handleClose,
   id,
-  useModalDataQuery,
   ModalContent,
-}) {
+  useModalDataQuery,
+  handleClose,
+}: MagicModalProps) {
   const { data, isLoading, error } = useModalDataQuery(id);
 
   if (error) {
