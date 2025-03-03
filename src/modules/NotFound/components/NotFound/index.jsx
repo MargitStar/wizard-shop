@@ -17,7 +17,7 @@ const NotFound = () => {
         404 - Not Found
       </Typography>
       <Typography variant="h6" sx={{ marginTop: 2 }}>
-        The page you're looking for doesn't exist.
+        {`The page you're looking for doesn't exist.`}
       </Typography>
       <Button
         variant="contained"

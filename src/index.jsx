@@ -13,5 +13,5 @@ ReactDOM.createRoot(entryPoint).render(
     <Provider store={store}>
       <App />
     </Provider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );

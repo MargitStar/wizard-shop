@@ -15,7 +15,7 @@ export const fetchEndpointData =
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(
-          `Endpoint ${url} failed with error code ${response.code}`
+          `Endpoint ${url} failed with error code ${response.code}`,
         );
       }
       dispatch(setData({ endpoint_name, data: await response.json() }));
