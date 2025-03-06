@@ -18,13 +18,11 @@ export default function HomeScroll({ name, Content, response }) {
   const { handleItemClick } = useNavigationContext();
   const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
-  console.log("isLoading :>> ", response);
 
   const handleOpenModal = (id) => {
     if (page?.page === PagesEnum.INGREDIENTS)
       handleItemClick(`${page?.route}`, page?.page, false);
     else {
-      console.log("id :>> ", id);
       handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
     }
 
