@@ -22,7 +22,9 @@ export default function HomeScroll({ name, Content, response }) {
   const handleOpenModal = (id) => {
     if (page?.page === PagesEnum.INGREDIENTS)
       handleItemClick(`${page?.route}`, page?.page, false);
-    else handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
+    else {
+      handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
+    }
 
     window.scrollTo(0, 0);
   };
@@ -36,7 +38,7 @@ export default function HomeScroll({ name, Content, response }) {
             to={page?.route}
             onClick={() => {
               handleItemClick(page?.route, page?.page, false);
-              window.scroll(0, 0);
+              window.scrollTo(0, 0);
             }}
           >
             {name}
@@ -65,7 +67,7 @@ export default function HomeScroll({ name, Content, response }) {
                     ? `${page?.route}`
                     : `${page?.route}?modal=${item?.id}`
                 }
-                onClick={handleOpenModal}
+                onClick={() => handleOpenModal(item?.id)}
               >
                 <MagicCard
                   data={item}
