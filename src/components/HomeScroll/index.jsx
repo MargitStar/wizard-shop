@@ -18,11 +18,15 @@ export default function HomeScroll({ name, Content, response }) {
   const { handleItemClick } = useNavigationContext();
   const { data, isLoading, error } = response;
   const { paginatedData } = usePagination(data ?? [], 10);
+  console.log("isLoading :>> ", response);
 
   const handleOpenModal = (id) => {
     if (page?.page === PagesEnum.INGREDIENTS)
       handleItemClick(`${page?.route}`, page?.page, false);
-    else handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
+    else {
+      console.log("id :>> ", id);
+      handleItemClick(`${page?.route}?modal=${id}`, page?.page, false);
+    }
 
     window.scrollTo(0, 0);
   };
@@ -65,7 +69,7 @@ export default function HomeScroll({ name, Content, response }) {
                     ? `${page?.route}`
                     : `${page?.route}?modal=${item?.id}`
                 }
-                onClick={handleOpenModal}
+                onClick={() => handleOpenModal(item?.id)}
               >
                 <MagicCard
                   data={item}
