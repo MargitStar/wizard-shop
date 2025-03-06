@@ -43,7 +43,7 @@ export default function DataDisplayer({
   };
 
   if (error) {
-    console.log("Error >>>", error);
+    console.error("Error >>>", error);
     const homePage = PAGES.find((item) => item.page === PagesEnum.HOME);
     return (
       <ErrorModal
