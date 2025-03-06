@@ -124,7 +124,7 @@ describe("HomeScroll", () => {
 
     fireEvent.click(links[1]);
     expect(mockHandleItemClick).toHaveBeenCalledWith(
-      "/undefined?modal=1",
+      "undefined?modal=1",
       undefined,
       false
     );
