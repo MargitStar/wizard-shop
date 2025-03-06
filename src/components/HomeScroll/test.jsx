@@ -20,6 +20,7 @@ describe("HomeScroll", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    window.scrollTo = jest.fn();
     useNavigationContext.mockReturnValue({
       handleItemClick: jest.fn(),
     });

@@ -38,7 +38,7 @@ export default function HomeScroll({ name, Content, response }) {
             to={page?.route}
             onClick={() => {
               handleItemClick(page?.route, page?.page, false);
-              window.scroll(0, 0);
+              window.scrollTo(0, 0);
             }}
           >
             {name}
